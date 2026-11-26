@@ -38,6 +38,21 @@ $$("[data-view]").forEach(el => {
   el.addEventListener("click", e => { e.preventDefault(); show(el.dataset.view); });
 });
 
+/* Back to the landing screen: the logo and the "Start over" link both do this.
+ * Without it, the intro and the suggestions were gone for good after the first
+ * question, and the only way back was reloading the page. */
+function startOver() {
+  $("#thread").innerHTML = "";
+  $("#intro").classList.toggle("is-hidden", false);
+  $("#suggestions").classList.toggle("is-hidden", false);
+  $("#start-over").classList.toggle("is-hidden", true);
+  $("#q").value = "";
+  show("ask");
+  $("#q").focus();
+}
+$(".brand").addEventListener("click", startOver);
+$("#start-over").addEventListener("click", startOver);
+
 /* ------------------------------------------------------------------- ask */
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g,
@@ -96,6 +111,7 @@ async function ask(question) {
   $("#send").disabled = true;
   $("#intro").classList.add("is-hidden");
   $("#suggestions").classList.add("is-hidden");
+  $("#start-over").classList.toggle("is-hidden", false);
   $("#q").value = "";
 
   const turn = document.createElement("article");
@@ -247,7 +263,7 @@ async function loadCorpus() {
     const d = await (await fetch("/api/corpus")).json();
     state.loaded.corpus = true;
     $("#kicker-text").textContent =
-      `Corrective RAG · ${d.total_books} books · ${d.total_chunks.toLocaleString()} passages`;
+      `Inspired by EdgeChat Books · Corrective RAG · ${d.total_books} books`;
 
     el.innerHTML = `
       <div class="stats">

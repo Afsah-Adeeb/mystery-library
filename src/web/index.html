@@ -34,7 +34,7 @@
   <section class="view is-active" id="view-ask">
 
     <div class="intro" id="intro">
-      <p class="kicker"><span class="dot"></span><span id="kicker-text">Corrective RAG</span></p>
+      <p class="kicker"><span class="dot"></span><span id="kicker-text">Inspired by EdgeChat Books · Corrective RAG</span></p>
       <h1>Ask the great detectives.</h1>
       <p class="lede">
         Sherlock Holmes, Father Brown, Dupin and twenty more classic mysteries.
@@ -42,11 +42,18 @@
         from what survives, searches deeper when too little does, or declines rather
         than guessing.
       </p>
+      <p class="credit">
+        Inspired by the <a href="https://www.edgechat.ai/books" target="_blank"
+        rel="noopener">Books app in EdgeChat</a>, where you can ask about what you're
+        reading. This version checks every answer against the text first.
+        <span class="credit-note">Not affiliated with EdgeChat.</span>
+      </p>
     </div>
 
     <div class="thread" id="thread"></div>
 
     <div class="composer-wrap">
+      <button class="start-over is-hidden" id="start-over" type="button">↺ Start over</button>
       <form class="composer" id="composer" autocomplete="off">
         <input id="q" type="text" placeholder="Ask a question about the books…"
                aria-label="Ask a question about the books">
