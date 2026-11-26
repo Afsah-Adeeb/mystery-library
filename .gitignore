@@ -36,3 +36,4 @@ data/books_text/
 # Run logs, and the resumable progress file of eval/crag_vs_rag.py.
 eval/_*.log
 eval/.crag_progress.jsonl
+

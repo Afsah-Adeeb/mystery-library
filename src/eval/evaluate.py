@@ -550,6 +550,12 @@ def evaluate(top_k=None, generate=False, pause=0.0, from_cache=False):
         "over_refusal": summary.get("over_refusal"),
         "fact_coverage": summary.get("fact_coverage"),
         "hallucination_candidates": summary.get("hallucination_candidates", []),
+        # Every question's top-1 similarity, for the site's dot chart of
+        # answerable vs trick questions. The questions are public (they are
+        # in the repo), and the chart is the clearest picture of why a
+        # similarity cutoff cannot replace the grader.
+        "points": [{"id": r["id"], "question": r["question"], "answerable": r["answerable"],
+                    "score": round(r["top_score"], 3)} for r in records],
     })
 
     write_report(records, summary, by_type, top_k)

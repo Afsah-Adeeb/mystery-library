@@ -62,6 +62,13 @@
      "lo": 0.8333333333333334,
      "hi": 0.96875,
      "kind": "mean"
+    },
+    "coverage": {
+     "n": 48,
+     "value": 0.9583333333333334,
+     "lo": 0.8958333333333334,
+     "hi": 1.0,
+     "kind": "mean"
     }
    },
    "paraphrase": {
@@ -78,6 +85,13 @@
      "value": 0.5277777777777778,
      "lo": 0.2777777777777778,
      "hi": 0.7777777777777777,
+     "kind": "mean"
+    },
+    "coverage": {
+     "n": 12,
+     "value": 0.6666666666666666,
+     "lo": 0.4166666666666667,
+     "hi": 0.9166666666666666,
      "kind": "mean"
     }
    },
@@ -96,6 +110,13 @@
      "lo": 1.0,
      "hi": 1.0,
      "kind": "mean"
+    },
+    "coverage": {
+     "n": 9,
+     "value": 0.7777777777777778,
+     "lo": 0.6111111111111112,
+     "hi": 0.9444444444444444,
+     "kind": "mean"
     }
    },
    "multi_book": {
@@ -113,12 +134,20 @@
      "lo": 0.4791666666666667,
      "hi": 0.9166666666666667,
      "kind": "mean"
+    },
+    "coverage": {
+     "n": 8,
+     "value": 0.3958333333333333,
+     "lo": 0.2708333333333333,
+     "hi": 0.5833333333333333,
+     "kind": "mean"
     }
    },
    "unanswerable": {
     "n": 16,
     "hit": null,
-    "mrr": null
+    "mrr": null,
+    "coverage": null
    }
   },
   "correct_refusal": {
@@ -143,7 +172,567 @@
    "kind": "mean"
   },
   "hallucination_candidates": [],
-  "updated": "2026-11-26 19:48"
+  "points": [
+   {
+    "id": "S01",
+    "question": "What word was written in blood on the wall at Lauriston Gardens?",
+    "answerable": true,
+    "score": 0.658
+   },
+   {
+    "id": "S02",
+    "question": "Who murdered Enoch Drebber in A Study in Scarlet?",
+    "answerable": true,
+    "score": 0.699
+   },
+   {
+    "id": "S03",
+    "question": "On which troopship did Watson return to England from Afghanistan?",
+    "answerable": true,
+    "score": 0.534
+   },
+   {
+    "id": "S04",
+    "question": "What treasure is at the centre of The Sign of the Four?",
+    "answerable": true,
+    "score": 0.709
+   },
+   {
+    "id": "S05",
+    "question": "What was the name of the dog Holmes borrowed to follow the creosote trail?",
+    "answerable": true,
+    "score": 0.607
+   },
+   {
+    "id": "S06",
+    "question": "What killed Julia Stoner in The Speckled Band?",
+    "answerable": true,
+    "score": 0.478
+   },
+   {
+    "id": "S07",
+    "question": "What was the Red-Headed League really a cover for?",
+    "answerable": true,
+    "score": 0.512
+   },
+   {
+    "id": "S08",
+    "question": "Where was the blue carbuncle found?",
+    "answerable": true,
+    "score": 0.462
+   },
+   {
+    "id": "S09",
+    "question": "In Silver Blaze, what was the curious incident of the dog in the night-time?",
+    "answerable": true,
+    "score": 0.611
+   },
+   {
+    "id": "S10",
+    "question": "Where did Holmes and Moriarty have their final struggle in The Final Problem?",
+    "answerable": true,
+    "score": 0.669
+   },
+   {
+    "id": "S11",
+    "question": "What club does Mycroft Holmes belong to?",
+    "answerable": true,
+    "score": 0.661
+   },
+   {
+    "id": "S12",
+    "question": "Who was the villain behind the hound in The Hound of the Baskervilles?",
+    "answerable": true,
+    "score": 0.767
+   },
+   {
+    "id": "S13",
+    "question": "How was the escaped convict Selden related to Mrs. Barrymore?",
+    "answerable": true,
+    "score": 0.533
+   },
+   {
+    "id": "S14",
+    "question": "What weapon did Colonel Moran use in The Adventure of the Empty House?",
+    "answerable": true,
+    "score": 0.5
+   },
+   {
+    "id": "S15",
+    "question": "What did the stick figures in The Adventure of the Dancing Men turn out to be?",
+    "answerable": true,
+    "score": 0.416
+   },
+   {
+    "id": "S16",
+    "question": "What was hidden inside one of the busts in The Six Napoleons?",
+    "answerable": true,
+    "score": 0.614
+   },
+   {
+    "id": "S17",
+    "question": "What was the name of the secret society in the Vermissa Valley in The Valley of Fear?",
+    "answerable": true,
+    "score": 0.726
+   },
+   {
+    "id": "S18",
+    "question": "What poison was used in The Adventure of the Devil's Foot?",
+    "answerable": true,
+    "score": 0.688
+   },
+   {
+    "id": "S19",
+    "question": "What false name does Holmes use when working against Von Bork in His Last Bow?",
+    "answerable": true,
+    "score": 0.725
+   },
+   {
+    "id": "S20",
+    "question": "What killed Fitzroy McPherson in The Adventure of the Lion's Mane?",
+    "answerable": true,
+    "score": 0.57
+   },
+   {
+    "id": "S21",
+    "question": "How did Maria Gibson die in The Problem of Thor Bridge?",
+    "answerable": true,
+    "score": 0.518
+   },
+   {
+    "id": "S22",
+    "question": "Which master criminal does Valentin pursue in The Blue Cross?",
+    "answerable": true,
+    "score": 0.551
+   },
+   {
+    "id": "S23",
+    "question": "In The Invisible Man, why did nobody notice the murderer?",
+    "answerable": true,
+    "score": 0.557
+   },
+   {
+    "id": "S24",
+    "question": "In The Absence of Mr Glass, what was the young man really doing alone in his room?",
+    "answerable": true,
+    "score": 0.569
+   },
+   {
+    "id": "S25",
+    "question": "Whose family curse was supposedly hidden under the purple wig?",
+    "answerable": true,
+    "score": 0.663
+   },
+   {
+    "id": "S26",
+    "question": "Who killed the two women in The Murders in the Rue Morgue?",
+    "answerable": true,
+    "score": 0.575
+   },
+   {
+    "id": "S27",
+    "question": "What did the coded message in The Gold-Bug lead to?",
+    "answerable": true,
+    "score": 0.48
+   },
+   {
+    "id": "S28",
+    "question": "Where was the stolen letter hidden in The Purloined Letter?",
+    "answerable": true,
+    "score": 0.572
+   },
+   {
+    "id": "S29",
+    "question": "Where did the narrator of The Tell-Tale Heart hide the body?",
+    "answerable": true,
+    "score": 0.574
+   },
+   {
+    "id": "S30",
+    "question": "Who took the Moonstone from Rachel Verinder's cabinet on the night of her birthday?",
+    "answerable": true,
+    "score": 0.697
+   },
+   {
+    "id": "S31",
+    "question": "Which book does Gabriel Betteredge keep re-reading for guidance?",
+    "answerable": true,
+    "score": 0.517
+   },
+   {
+    "id": "S32",
+    "question": "What is John Jasper's relationship to Edwin Drood?",
+    "answerable": true,
+    "score": 0.734
+   },
+   {
+    "id": "S33",
+    "question": "In which cathedral town is The Mystery of Edwin Drood set?",
+    "answerable": true,
+    "score": 0.732
+   },
+   {
+    "id": "S34",
+    "question": "Who is the police detective in The Leavenworth Case?",
+    "answerable": true,
+    "score": 0.678
+   },
+   {
+    "id": "S35",
+    "question": "How was Horatio Leavenworth killed?",
+    "answerable": true,
+    "score": 0.76
+   },
+   {
+    "id": "S36",
+    "question": "Who was found dead in the locked room in The Big Bow Mystery?",
+    "answerable": true,
+    "score": 0.805
+   },
+   {
+    "id": "S37",
+    "question": "Who turns out to be the murderer in The Big Bow Mystery?",
+    "answerable": true,
+    "score": 0.738
+   },
+   {
+    "id": "S38",
+    "question": "What sport is A. J. Raffles famous for?",
+    "answerable": true,
+    "score": 0.473
+   },
+   {
+    "id": "S39",
+    "question": "Who narrates the Raffles stories?",
+    "answerable": true,
+    "score": 0.524
+   },
+   {
+    "id": "S40",
+    "question": "Who is the young reporter who solves The Mystery of the Yellow Room?",
+    "answerable": true,
+    "score": 0.746
+   },
+   {
+    "id": "S41",
+    "question": "Who was attacked inside the Yellow Room?",
+    "answerable": true,
+    "score": 0.709
+   },
+   {
+    "id": "S42",
+    "question": "Who was the attacker in The Mystery of the Yellow Room?",
+    "answerable": true,
+    "score": 0.771
+   },
+   {
+    "id": "S43",
+    "question": "Which police inspector arrests Arsene Lupin when the steamship reaches port?",
+    "answerable": true,
+    "score": 0.697
+   },
+   {
+    "id": "S44",
+    "question": "What is the full name of the scientist known as the Thinking Machine?",
+    "answerable": true,
+    "score": 0.683
+   },
+   {
+    "id": "S45",
+    "question": "How long did the Thinking Machine bet he would need to escape from Cell 13?",
+    "answerable": true,
+    "score": 0.68
+   },
+   {
+    "id": "S46",
+    "question": "Who is the young journalist who listens to the Old Man in the Corner?",
+    "answerable": true,
+    "score": 0.581
+   },
+   {
+    "id": "S47",
+    "question": "Who narrates The Thirty-Nine Steps?",
+    "answerable": true,
+    "score": 0.694
+   },
+   {
+    "id": "S48",
+    "question": "Who was murdered in Richard Hannay's flat at the start of The Thirty-Nine Steps?",
+    "answerable": true,
+    "score": 0.663
+   },
+   {
+    "id": "P01",
+    "question": "In which story does a stepfather kill using a venomous creature sent through a small opening into the next bedroom?",
+    "answerable": true,
+    "score": 0.513
+   },
+   {
+    "id": "P02",
+    "question": "Which case turns on a guard animal that stayed silent overnight, showing the culprit was someone it knew?",
+    "answerable": true,
+    "score": 0.459
+   },
+   {
+    "id": "P03",
+    "question": "Which armchair sleuth fiddles with a cord while explaining cases to a female reporter over lunch?",
+    "answerable": true,
+    "score": 0.533
+   },
+   {
+    "id": "P04",
+    "question": "In which story is a stolen document concealed simply by leaving it in plain view?",
+    "answerable": true,
+    "score": 0.615
+   },
+   {
+    "id": "P05",
+    "question": "Which story has a large ape kill two women in Paris?",
+    "answerable": true,
+    "score": 0.468
+   },
+   {
+    "id": "P06",
+    "question": "In which case does the killer turn out to be a sea creature rather than a person?",
+    "answerable": true,
+    "score": 0.465
+   },
+   {
+    "id": "P07",
+    "question": "In which Father Brown story does the killer go unseen because of his everyday uniform?",
+    "answerable": true,
+    "score": 0.658
+   },
+   {
+    "id": "P08",
+    "question": "Which story features a scientist who bets he can break out of a prison using nothing but reasoning?",
+    "answerable": true,
+    "score": 0.59
+   },
+   {
+    "id": "P09",
+    "question": "What did the villain smear on his huge dog to make it glow like a supernatural beast?",
+    "answerable": true,
+    "score": 0.551
+   },
+   {
+    "id": "P10",
+    "question": "What sleep-inducing drug was secretly given to the man who unknowingly removed the yellow gem?",
+    "answerable": true,
+    "score": 0.622
+   },
+   {
+    "id": "P11",
+    "question": "Which gentleman thief is also a celebrated sportsman with a bat and ball?",
+    "answerable": true,
+    "score": 0.512
+   },
+   {
+    "id": "P12",
+    "question": "Who is the man back from southern Africa who gets bored in London and is soon framed for murder?",
+    "answerable": true,
+    "score": 0.49
+   },
+   {
+    "id": "C01",
+    "question": "How does Sherlock Holmes rate Poe's detective Dupin, and how does Dupin solve the Rue Morgue case?",
+    "answerable": true,
+    "score": 0.701
+   },
+   {
+    "id": "C02",
+    "question": "How does Flambeau's role change between The Blue Cross and the later Father Brown stories?",
+    "answerable": true,
+    "score": 0.667
+   },
+   {
+    "id": "C03",
+    "question": "The Big Bow Mystery and The Mystery of the Yellow Room are both locked-room mysteries. Who was the culprit in each?",
+    "answerable": true,
+    "score": 0.706
+   },
+   {
+    "id": "C04",
+    "question": "Which police detectives pursue Raffles and Arsene Lupin?",
+    "answerable": true,
+    "score": 0.571
+   },
+   {
+    "id": "C05",
+    "question": "Compare the motive for murder in A Study in Scarlet with the motive in The Valley of Fear.",
+    "answerable": true,
+    "score": 0.631
+   },
+   {
+    "id": "C06",
+    "question": "Who tells the story of The Moonstone, compared with who narrates The Leavenworth Case?",
+    "answerable": true,
+    "score": 0.672
+   },
+   {
+    "id": "C07",
+    "question": "In The Final Problem Watson believes Holmes died at the Reichenbach Falls. How does Holmes explain his survival in The Empty House?",
+    "answerable": true,
+    "score": 0.713
+   },
+   {
+    "id": "C08",
+    "question": "Both The Mystery of Edwin Drood and The Moonstone involve opium. Who uses it in each?",
+    "answerable": true,
+    "score": 0.684
+   },
+   {
+    "id": "C09",
+    "question": "How do the Thinking Machine and the Old Man in the Corner differ in how they investigate?",
+    "answerable": true,
+    "score": 0.633
+   },
+   {
+    "id": "M01",
+    "question": "Which books in this collection feature Professor Moriarty?",
+    "answerable": true,
+    "score": 0.557
+   },
+   {
+    "id": "M02",
+    "question": "Which stories in this library involve a stolen jewel or gem?",
+    "answerable": true,
+    "score": 0.623
+   },
+   {
+    "id": "M03",
+    "question": "Which stories in this collection are locked-room mysteries?",
+    "answerable": true,
+    "score": 0.549
+   },
+   {
+    "id": "M04",
+    "question": "Which books in this collection have part of their story set in America?",
+    "answerable": true,
+    "score": 0.451
+   },
+   {
+    "id": "M05",
+    "question": "Which stories involve a secret society or criminal brotherhood?",
+    "answerable": true,
+    "score": 0.534
+   },
+   {
+    "id": "M06",
+    "question": "Which books in this collection have plots connected to India?",
+    "answerable": true,
+    "score": 0.411
+   },
+   {
+    "id": "M07",
+    "question": "Which gentleman thieves appear in this collection?",
+    "answerable": true,
+    "score": 0.542
+   },
+   {
+    "id": "M08",
+    "question": "Which detectives in this collection are not police or private detectives -- for example a priest, a scientist or a journalist?",
+    "answerable": true,
+    "score": 0.507
+   },
+   {
+    "id": "U01",
+    "question": "What was Sherlock Holmes's blood type?",
+    "answerable": false,
+    "score": 0.672
+   },
+   {
+    "id": "U02",
+    "question": "What was the name of Watson's bull pup?",
+    "answerable": false,
+    "score": 0.565
+   },
+   {
+    "id": "U03",
+    "question": "Who is finally revealed as the murderer of Edwin Drood?",
+    "answerable": false,
+    "score": 0.749
+   },
+   {
+    "id": "U04",
+    "question": "What was the name of Professor Moriarty's mother?",
+    "answerable": false,
+    "score": 0.609
+   },
+   {
+    "id": "U05",
+    "question": "In what year was Father Brown born?",
+    "answerable": false,
+    "score": 0.603
+   },
+   {
+    "id": "U06",
+    "question": "How did Raffles die?",
+    "answerable": false,
+    "score": 0.519
+   },
+   {
+    "id": "U07",
+    "question": "What is the name of Arsene Lupin's son?",
+    "answerable": false,
+    "score": 0.648
+   },
+   {
+    "id": "U08",
+    "question": "What is the population of Cloisterham?",
+    "answerable": false,
+    "score": 0.488
+   },
+   {
+    "id": "U09",
+    "question": "How much was Holmes paid for solving The Hound of the Baskervilles?",
+    "answerable": false,
+    "score": 0.699
+   },
+   {
+    "id": "U10",
+    "question": "What did Father Brown study at university?",
+    "answerable": false,
+    "score": 0.601
+   },
+   {
+    "id": "U11",
+    "question": "What is the name of Sherlock Holmes's barber?",
+    "answerable": false,
+    "score": 0.653
+   },
+   {
+    "id": "U12",
+    "question": "What was the Thinking Machine's favourite food?",
+    "answerable": false,
+    "score": 0.582
+   },
+   {
+    "id": "U13",
+    "question": "What salary did Inspector Gryce earn?",
+    "answerable": false,
+    "score": 0.41
+   },
+   {
+    "id": "U14",
+    "question": "What is Richard Hannay's middle name?",
+    "answerable": false,
+    "score": 0.395
+   },
+   {
+    "id": "U15",
+    "question": "In what year did Joseph Rouletabille die?",
+    "answerable": false,
+    "score": 0.578
+   },
+   {
+    "id": "U16",
+    "question": "Which actor played Sherlock Holmes in the most films?",
+    "answerable": false,
+    "score": 0.596
+   }
+  ],
+  "updated": "2026-11-27 01:12"
  },
  "robustness": {
   "top_k": 5,

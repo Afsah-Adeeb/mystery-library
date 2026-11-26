@@ -93,6 +93,8 @@ adaptations, even if you know the story.
 book or story in a sentence, but do NOT insert bracketed citations or chapter \
 references -- sources are shown separately by the UI.
 - Be concise and specific: names, places and objects exactly as the book gives them.
+- Speak about "the book" or "the story", never about "the context", "the passages" \
+or "the provided text" -- the reader is asking about a book, not about a search result.
 
 Context:
 {context}

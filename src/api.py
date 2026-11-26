@@ -55,16 +55,22 @@ from crag import crag_graph, route_after_grading  # noqa: E402
 from ingest import book_title, chunk_body  # noqa: E402
 from retrieve import load_metadata  # noqa: E402
 
-WEB_DIR = Path(__file__).resolve().parent / "web"
+WEB_DIR = Path(__file__).resolve().parent / "web"     # the first, minimal interface
+SITE_DIR = Path(__file__).resolve().parent / "site"   # the reader-style interface, served at /
 
 app = FastAPI(title="The Mystery Library", docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory=WEB_DIR), name="static")
 
 
 # --- Pages -------------------------------------------------------------------
+#
+# The home page is the reader-style site in src/site/ (mounted at "/" at the
+# bottom of this file, after every API route, so the routes match first).
+# The original single-page interface, with its live Activity view, stays at
+# /classic.
 
-@app.get("/")
-def index():
+@app.get("/classic")
+def classic():
     return FileResponse(WEB_DIR / "index.html")
 
 
@@ -286,7 +292,7 @@ def ask(req: AskRequest):
             "score": round(float(c.get("score", 0.0)), 3),
             # Without the "Book — Chapter" label line: the UI shows those
             # in the source's header already.
-            "text": chunk_body(c)[:600],
+            "text": chunk_body(c)[:1200],
         } for c in chunks]
 
         # Same event log the Streamlit front end writes, so the Activity view
@@ -387,6 +393,135 @@ def evaluation():
     data = eval_core.read_summary()
     data.pop("_test", None)
     return {"available": bool(data), "summary": data}
+
+
+# --- Reading a whole book ----------------------------------------------------
+
+def _book_path(file_name):
+    """The book's file, refusing anything outside data/books/ (no '../' tricks)."""
+    path = (config.BOOKS_DIR / file_name).resolve()
+    if path.parent != config.BOOKS_DIR.resolve() or path.suffix != ".txt" or not path.exists():
+        raise HTTPException(404, "No such book.")
+    return path
+
+
+@app.get("/api/book/{file_name}")
+def book(file_name: str):
+    """The whole book as chapters, [{title, paras}], for the reader.
+
+    Uses the same chapter split as the index, so the chapter a reader sees is
+    the chapter an answer would cite. Front matter (title pages, contents) is
+    skipped: a reader opens on the first chapter. Short lines of dialogue are
+    kept, unlike in chunking, because here they are the story, not noise.
+    """
+    from ingest import MIN_SECTION_CHARS, read_book_text, split_chapters
+    path = _book_path(file_name)
+    chapters = []
+    for label, text in split_chapters(read_book_text(path), book=book_title(file_name)):
+        if label == "Front matter":
+            continue
+        paras = [" ".join(p.split()) for p in text.split("\n\n")]
+        paras = [p for p in paras if any(ch.isalpha() for ch in p)]
+        if sum(len(p) for p in paras) >= MIN_SECTION_CHARS:
+            chapters.append({"title": label, "paras": paras})
+    return {"file": file_name, "title": book_title(file_name), "chapters": chapters}
+
+
+# --- Asking about the book you are reading -----------------------------------
+
+_book_indexes = {}
+_book_index_lock = threading.Lock()
+
+
+def _book_index(file_name):
+    """A small FAISS index of one book's chunks, built once and cached.
+
+    "Ask about what you're reading" should search what you are reading. The
+    corrective flow already accepts a caller's own index (crag.py's _fetch),
+    so scoping is just a smaller index. A book's chunks sit next to each other
+    in the main index, because ingest.py writes them book by book, so they are
+    copied out as one contiguous range of vectors.
+    """
+    import faiss
+    from retrieve import base_index_and_metadata
+    with _book_index_lock:
+        if file_name not in _book_indexes:
+            index, meta = base_index_and_metadata()
+            ids = [i for i, c in enumerate(meta) if c["source_book"] == file_name]
+            if not ids:
+                raise HTTPException(404, "No such book.")
+            sub = faiss.IndexFlatIP(index.d)
+            sub.add(index.reconstruct_n(ids[0], len(ids)))
+            _book_indexes[file_name] = (sub, [meta[i] for i in ids])
+        return _book_indexes[file_name]
+
+
+class AskBookRequest(BaseModel):
+    question: str
+    book: str | None = None       # a file name; None searches the whole library
+    session_id: str = "site"
+
+
+@app.post("/api/ask-book")
+def ask_book(req: AskBookRequest):
+    """The corrective flow over one book (or the library), streamed as SSE.
+
+    Lighter than /api/ask: the reader shows only the answer in a chat bubble,
+    never sources marked up on the page, so the events carry just the step
+    reached and, at the end, the answer and the decision.
+    """
+    question = (req.question or "").strip()
+    if not question:
+        raise HTTPException(400, "Question is empty.")
+    index, meta = _book_index(req.book) if req.book else (None, None)
+
+    def work(out):
+        started = time.perf_counter()
+        try:
+            state = {"question": question, "top_k": config.DEFAULT_TOP_K,
+                     "index": index, "metadata": meta, "model": config.GEMINI_MODEL_NAME}
+            final = {}
+            for update in crag_graph().stream(state):
+                for node, delta in update.items():
+                    final = {**final, **delta}
+                    payload = {"node": node}
+                    if node == "grade":
+                        payload["next"] = route_after_grading(final)
+                    out.put(("phase", payload))
+            answer = final.get("answer", "")
+            try:   # same monitoring as /api/ask; never allowed to break answering
+                telemetry.log_query(
+                    question=question, answer=answer,
+                    retrieved_chunks=final.get("chunks") or [],
+                    retrieval_ms=final.get("retrieval_ms", 0.0),
+                    generation_ms=final.get("generation_ms", 0.0),
+                    top_k=config.DEFAULT_TOP_K, usage=final,
+                    surface="site-book" if req.book else "site-library",
+                    session_id=req.session_id)
+            except Exception:  # noqa: BLE001
+                pass
+            out.put(("done", {"answer": answer, "decision": final.get("decision", "answer"),
+                              "total_ms": round((time.perf_counter() - started) * 1000)}))
+        except Exception as exc:  # noqa: BLE001
+            out.put(("error", {"message": _friendly_error(exc)}))
+        finally:
+            out.put((None, None))
+
+    def stream():
+        out = queue.Queue()
+        threading.Thread(target=work, args=(out,), daemon=True).start()
+        while True:
+            kind, payload = out.get()
+            if kind is None:
+                return
+            yield _sse(kind, payload)
+
+    return StreamingResponse(stream(), media_type="text/event-stream",
+                             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+
+# The reader-style site, last so that every route above matches first.
+app.mount("/", StaticFiles(directory=SITE_DIR, html=True), name="site")
 
 
 if __name__ == "__main__":

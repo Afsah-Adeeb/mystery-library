@@ -2,6 +2,16 @@
 
 **Live: <https://mystery-library.web.app>**
 
+**The site** is a reader in the style of the Books app in EdgeChat: open any of the 23 books, read
+it whole, chapter by chapter, and ask about it in a side chat. Answers come only from the book you
+are reading, appear only in the chat (the page is never marked up), and when the book doesn't say,
+the reply is simply "Not in this book." Read Aloud speaks from wherever you are and lights each word.
+The Evaluation page shows every measured number with its 95% interval. The original minimal
+interface is still at [/classic](https://mystery-library.web.app/classic).
+
+The EdgeChat Otter is used with the permission of Biostate AI, given for this public demo. This is an
+independent student project, not an official EdgeChat product.
+
 Ask questions across **23 classic mystery books** — the complete Sherlock Holmes, Father
 Brown, Poe's Dupin stories, *The Moonstone*, *The Mystery of the Yellow Room* and more —
 and get answers grounded in the text, with the book and chapter they came from.

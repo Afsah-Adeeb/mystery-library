@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mystery Library · Ask about what you're reading</title>
+  <meta name="description" content="Ask questions across 23 classic mystery books. Every answer is checked against the text before you see it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+
+<div class="beta">
+  <span>The Mystery Library is a free demo. Every answer comes only from the books.</span>
+  <a href="https://github.com/Afsah-Adeeb/mystery-library" target="_blank" rel="noopener">See the code ↗</a>
+</div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="assets/otter-logo.png" alt="">
+      <span>Mystery Library</span>
+    </a>
+    <div class="links">
+      <a href="#top" class="is-active" data-nav="top">Ask</a>
+      <a href="#shelf" data-nav="shelf">Shelf</a>
+      <a href="#how" data-nav="how">How it works</a>
+      <a href="evaluation.html">Evaluation</a>
+    </div>
+    <a class="btn-light" href="#ask" data-ask-cta>Ask a question</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ===================================================== HERO -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-grid">
+
+      <div class="hero-copy">
+        <div class="app-id">
+          <span class="app-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 5.2c3-.9 5.6-.7 8 .9v13c-2.4-1.6-5-1.8-8-.9z"/>
+              <path d="M11 6.1c1.6-1.1 3.4-1.4 5.4-1.2"/>
+              <circle cx="16.6" cy="13.6" r="3.3"/>
+              <path d="M19 16l2.2 2.2"/>
+            </svg>
+          </span>
+          <span class="app-name">Mystery Library</span>
+        </div>
+
+        <h1>Ask about what<br><em>you're reading.</em></h1>
+
+        <p class="lede">
+          Sherlock Holmes, Father Brown, Poe and twenty more classic mysteries.
+          Every answer is checked against the book before you see it.
+        </p>
+
+        <div class="cta-col">
+          <a class="pill-cta dark" href="#ask" data-ask-cta>
+            <span class="pill-text">
+              <b>Ask a question</b>
+              <small>Free · every answer cites its chapter</small>
+            </span>
+            <span class="pill-circle" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                   stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <span class="also">
+            Inspired by the <a href="https://www.edgechat.ai/books" target="_blank" rel="noopener">Books app in EdgeChat</a>
+            · not affiliated
+          </span>
+        </div>
+      </div>
+
+      <!-- The app: a library you can open books from, read, and ask. -->
+      <div class="app" id="app">
+
+        <!-- ============ LIBRARY ============ -->
+        <div class="lib" id="lib">
+          <aside class="side">
+            <div class="wordmark">library</div>
+            <div class="side-sub">Read, listen and ask · 23 classic mysteries</div>
+
+            <label class="search">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+              <input id="search" type="search" placeholder="Search the shelf" autocomplete="off">
+            </label>
+
+            <button class="card cont" id="cont" type="button">
+              <span class="mini-cover" id="cont-cover"></span>
+              <span class="cont-info">
+                <span class="lbl">CONTINUE READING</span>
+                <b id="cont-title">The Hound of the Baskervilles</b>
+                <span class="cont-ch" id="cont-ch">Chapter 1</span>
+                <span class="prog"><i id="cont-bar"></i></span>
+              </span>
+            </button>
+
+            <div class="card ra-card">
+              <span class="lbl">READ ALOUD</span>
+              <b id="ra-title">The Hound of the Baskervilles</b>
+              <div class="ra-row">
+                <button class="ra-btn" id="ra-play" type="button" aria-label="Open and read aloud">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M7 5v14l12-7z"/></svg>
+                </button>
+                <span class="ticks" id="ra-ticks" aria-hidden="true"></span>
+                <span class="ra-time">listen</span>
+              </div>
+            </div>
+
+            <div class="card ask-card">
+              <span class="lbl">ASK THE LIBRARY</span>
+              <div class="lib-msgs" id="lib-msgs">
+                <div class="msg-q">What club does Mycroft belong to?</div>
+                <div class="msg-a"><div class="bubble">The Diogenes Club.</div></div>
+              </div>
+              <form class="mini-composer" id="lib-form" autocomplete="off">
+                <input id="lib-q" type="text" placeholder="Ask across all 23 books…" aria-label="Ask the library">
+                <button type="submit" aria-label="Send">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6"
+                       stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+                </button>
+              </form>
+            </div>
+          </aside>
+
+          <section class="shelf-panel">
+            <div class="sp-head"><b>Your shelf</b><span id="sp-count">Mysteries · 23 books</span></div>
+            <div class="grid" id="grid"></div>
+          </section>
+        </div>
+
+        <!-- ============ READER ============ -->
+        <div class="read is-hidden" id="read">
+          <div class="read-top">
+            <button class="back" id="back" type="button">‹ Shelf</button>
+            <span class="where"><b id="rd-book"></b> <span id="rd-ch"></span></span>
+            <span class="pct" id="rd-pct">0%</span>
+          </div>
+          <div class="read-body">
+            <article class="text" id="text"></article>
+            <aside class="chat">
+              <div class="msgs" id="msgs">
+                <div class="chat-hint" id="chat-hint">
+                  <span class="lbl">ASK ABOUT THIS BOOK</span>
+                  <span>Answers come only from this book, and never mark up the page.</span>
+                  <div class="chips">
+                    <button class="chip" type="button">Who is the detective?</button>
+                    <button class="chip" type="button">Who tells the story?</button>
+                    <button class="chip" type="button">Where is it set?</button>
+                  </div>
+                </div>
+              </div>
+              <form class="composer" id="composer" autocomplete="off">
+                <input id="q" type="text" placeholder="Ask about this book…" aria-label="Ask about this book">
+                <button type="submit" id="send" aria-label="Send">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"
+                       stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+                </button>
+              </form>
+            </aside>
+          </div>
+          <div class="player" id="player">
+            <button id="play" type="button" aria-label="Read aloud">
+              <svg class="i-play" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M7 5v14l12-7z"/></svg>
+              <svg class="i-pause" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+            </button>
+            <span class="ra-label">READ ALOUD</span>
+            <span class="wave" id="wave" aria-hidden="true"></span>
+            <span class="ra-clock" id="ra-clock">0:00</span>
+          </div>
+        </div>
+
+        <!-- the cover that grows into the open book -->
+        <div class="grow" id="grow" aria-hidden="true"><span class="grow-title" id="grow-title"></span></div>
+        <span class="tap" id="tap" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== SHELF -->
+  <section class="shelf" id="shelf">
+    <h2>23 classic mysteries, <em>from Poe to Buchan.</em></h2>
+    <p class="section-sub">Every one public domain, from Project Gutenberg. Tap a cover to open it.</p>
+    <div class="marquee"><div class="track" id="covers"></div></div>
+  </section>
+
+  <!-- ===================================================== HOW -->
+  <section class="how" id="how">
+    <div class="how-grid">
+      <article class="how-card">
+        <span class="how-num">01 / 03</span>
+        <h3>Every passage,<br><em>graded.</em></h3>
+        <p>A second model reads each passage it found and judges whether it actually answers you, not just whether it is about the same thing.</p>
+        <div class="mini mini-grades">
+          <span><i class="g-rel"></i>relevant</span>
+          <span><i class="g-rel"></i>relevant</span>
+          <span><i class="g-part"></i>partial</span>
+          <span><i class="g-irr"></i>irrelevant</span>
+          <span><i class="g-irr"></i>irrelevant</span>
+        </div>
+      </article>
+      <article class="how-card">
+        <span class="how-num">02 / 03</span>
+        <h3>Too little?<br><em>It digs deeper.</em></h3>
+        <p>When fewer than two passages survive, it searches three times further down the shelf and grades again, on its own.</p>
+        <div class="mini mini-deepen">
+          <span class="stack s5">5 passages</span>
+          <span class="arrow">→</span>
+          <span class="stack s15">15 passages</span>
+        </div>
+      </article>
+      <article class="how-card">
+        <span class="how-num">03 / 03</span>
+        <h3>Nothing there?<br><em>It says so.</em></h3>
+        <p>Ask who killed Edwin Drood. Dickens died before revealing it, so the library declines instead of inventing an answer.</p>
+        <div class="mini mini-decline">
+          <span class="msg-q small">Who killed Edwin Drood?</span>
+          <span class="declined-bubble">Not in these books. The story was never finished.</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================================================== CLOSING -->
+  <section class="closing">
+    <div class="trail" id="trail">
+      <img class="trail-bg" src="assets/otter-plush.jpg" alt="" loading="lazy">
+      <div class="trail-shade" aria-hidden="true"></div>
+      <div class="closing-copy">
+        <h2><span>Ask the great</span><em>detectives.</em></h2>
+        <p>Free. No account. Every answer shows the book and chapter it came from, or admits the books don't say.</p>
+        <a class="pill-cta white" href="#ask" data-ask-cta>
+          <span class="pill-text">
+            <b>Ask a question</b>
+            <small>23 books · 13,430 passages</small>
+          </span>
+          <span class="pill-circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <span class="also light">Or browse <a href="#shelf">the shelf</a></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================================================== FOOTER -->
+<footer class="foot">
+  <img class="otter peek" src="assets/otter-peek.png" alt="">
+  <div class="foot-in">
+    <div class="mark">Mystery Library</div>
+    <div class="foot-grid">
+      <div>
+        <h4>Explore</h4>
+        <a href="#top">Ask</a><a href="#shelf">Shelf</a><a href="#how">How it works</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="https://github.com/Afsah-Adeeb/mystery-library" target="_blank" rel="noopener">GitHub</a>
+        <a href="evaluation.html">Evaluation</a>
+        <a href="https://mystery-library.web.app" target="_blank" rel="noopener">Live site</a>
+      </div>
+      <div>
+        <h4>Built with</h4>
+        <span>Corrective RAG · LangGraph</span><span>FAISS · MiniLM</span><span>Gemini</span>
+      </div>
+    </div>
+    <div class="notice" role="note">
+      <h4>About this site</h4>
+      <p>
+        The EdgeChat Otter appears here with the permission of Dave Zhang of Biostate AI, given on
+        27 November 2026 for this public demo. The EdgeChat name, the otter and its artwork remain the
+        property of Biostate AI and EdgeChat.
+      </p>
+      <p>
+        This is an independent student project, made as a proof-of-work submission. It is not an
+        official EdgeChat product and is not otherwise affiliated with or endorsed by EdgeChat or
+        Biostate AI.
+      </p>
+      <p>
+        The books are public domain, from Project Gutenberg. The retrieval system, its evaluation and
+        the code behind this site are my own work.
+      </p>
+    </div>
+  </div>
+  <img class="otter paws" src="assets/otter-paws.png" alt="">
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

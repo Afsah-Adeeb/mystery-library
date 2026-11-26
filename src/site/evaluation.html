@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mystery Library · Evaluation</title>
+  <meta name="description" content="How the Mystery Library is measured: 93 hand-labelled questions, real baselines, and 95% confidence intervals on every number.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body class="eval-page">
+
+<div class="beta">
+  <span>The Mystery Library is a free demo. Every answer comes only from the books.</span>
+  <a href="https://github.com/Afsah-Adeeb/mystery-library" target="_blank" rel="noopener">See the code ↗</a>
+</div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="wrap">
+    <a class="brand" href="./">
+      <img src="assets/otter-logo.png" alt="">
+      <span>Mystery Library</span>
+    </a>
+    <div class="links">
+      <a href="./#top">Ask</a>
+      <a href="./#shelf">Shelf</a>
+      <a href="./#how">How it works</a>
+      <a href="evaluation.html" class="is-active">Evaluation</a>
+    </div>
+    <a class="btn-light" href="./#app">Ask a question</a>
+  </div>
+</nav>
+
+<main>
+  <!-- ===================================================== HERO -->
+  <section class="hero ev-hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="ev-hero-grid">
+      <div class="hero-copy">
+        <div class="app-id">
+          <span class="app-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+            </svg>
+          </span>
+          <span class="app-name">Evaluation</span>
+        </div>
+        <h1>Measured,<br><em>not assumed.</em></h1>
+        <p class="lede" id="ev-lede">
+          Hand-labelled questions, some the books can answer and some they deliberately
+          cannot. Every number carries a 95% confidence interval, including the ones that
+          don't flatter the system.
+        </p>
+      </div>
+
+      <div class="report" id="report">
+        <div class="report-head"><span class="lbl">REPORT CARD</span><span class="report-meta" id="report-meta"></span></div>
+        <div class="tiles" id="tiles"><div class="loading-note">Loading results…</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== SECTIONS -->
+  <section class="ev-section">
+    <div class="ev-card">
+      <span class="how-num">01 · FINDING THE RIGHT BOOK</span>
+      <h2>Against real <em>baselines.</em></h2>
+      <p class="ev-sub">How often the right book is among the five passages handed to the model, compared with
+        keyword search (BM25) and five passages picked at random.</p>
+      <div class="bars" id="bars-baselines"></div>
+      <p class="ev-note" id="note-baselines"></p>
+    </div>
+
+    <div class="ev-card">
+      <span class="how-num">02 · BY KIND OF QUESTION</span>
+      <h2>Where it <em>struggles.</em></h2>
+      <p class="ev-sub">One average hides the failures. Hit Rate counts a multi-book question as a success the moment
+        <i>one</i> right book appears; “books reached” counts how many of the books it needed actually came back.</p>
+      <div class="split">
+        <div><h4>Right book in top 5</h4><div class="bars compact" id="bars-type-hit"></div></div>
+        <div><h4>Books reached</h4><div class="bars compact" id="bars-type-cov"></div></div>
+      </div>
+    </div>
+
+    <div class="ev-card">
+      <span class="how-num">03 · ANSWERS</span>
+      <h2>Honest about <em>the gaps.</em></h2>
+      <p class="ev-sub">Answers scored against facts checked by script to appear in the book. Measured on plain retrieval,
+        the baseline the corrective flow is built to beat.</p>
+      <div class="tiles small" id="answer-tiles"></div>
+      <p class="ev-note">It never invented an answer to a trick question. The weakness is the other direction: it often
+        finds the right book but not the exact passage, then declines a question it could have answered.
+        That is the case the corrective step's “search deeper” exists for. The head-to-head comparison of plain and
+        corrective retrieval ran out of free API quota; it re-runs on the next reset.</p>
+    </div>
+
+    <div class="ev-card">
+      <span class="how-num">04 · WHY A MODEL GRADES THE PASSAGES</span>
+      <h2>Similar is not <em>the same as answered.</em></h2>
+      <p class="ev-sub">Each dot is one test question, placed by how similar its best passage looked to the search.
+        If similarity could spot unanswerable questions, the trick questions would sit apart on the left. They don't.</p>
+      <div class="dots-chart" id="dots"></div>
+      <div class="legend">
+        <span><i class="lg-ans"></i>Answerable questions</span>
+        <span><i class="lg-trap"></i>Trick questions the books cannot answer</span>
+      </div>
+      <p class="ev-note" id="note-dots"></p>
+    </div>
+
+    <div class="ev-grid2">
+      <div class="ev-card">
+        <span class="how-num">05 · TYPED BADLY</span>
+        <h2>Typos <em>hurt most.</em></h2>
+        <p class="ev-sub">The same questions, rewritten with typos, in casual lower case, and as bare keywords.</p>
+        <div class="bars compact" id="bars-robust"></div>
+      </div>
+      <div class="ev-card">
+        <span class="how-num">06 · SETTINGS, MEASURED</span>
+        <h2>Why 1,000 <em>characters.</em></h2>
+        <p class="ev-sub">Right book in the top k, for every chunk size and k. The outlined cell is what runs live.</p>
+        <div class="heat" id="heat"></div>
+      </div>
+    </div>
+
+    <div class="ev-card">
+      <span class="how-num">07 · ONE DESIGN CHOICE, MEASURED</span>
+      <h2>A label on <em>every passage.</em></h2>
+      <p class="ev-sub">A chapter of a Holmes story says “Holmes” and “Watson” like sixty others. So every passage starts with
+        a line naming its book and chapter. The same 13,430 passages, searched with and without that line:</p>
+      <div class="pairs" id="pairs"></div>
+      <p class="ev-note">The intervals overlap a little, so the direction is clear and the exact size is not. On the 12 reworded
+        questions that name no story, the label slightly hurt (0.83 → 0.67).</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <img class="otter peek" src="assets/otter-peek.png" alt="">
+  <div class="foot-in">
+    <div class="mark">Mystery Library</div>
+    <div class="foot-grid">
+      <div><h4>Explore</h4><a href="./#top">Ask</a><a href="./#shelf">Shelf</a><a href="./#how">How it works</a></div>
+      <div><h4>Project</h4>
+        <a href="https://github.com/Afsah-Adeeb/mystery-library" target="_blank" rel="noopener">GitHub</a>
+        <a href="evaluation.html">Evaluation</a>
+        <a href="https://mystery-library.web.app" target="_blank" rel="noopener">Live site</a></div>
+      <div><h4>Built with</h4><span>Corrective RAG · LangGraph</span><span>FAISS · MiniLM</span><span>Gemini</span></div>
+    </div>
+    <div class="notice" role="note">
+      <h4>About this site</h4>
+      <p>
+        The EdgeChat Otter appears here with the permission of Dave Zhang of Biostate AI, given on
+        27 November 2026 for this public demo. The EdgeChat name, the otter and its artwork remain the
+        property of Biostate AI and EdgeChat.
+      </p>
+      <p>
+        This is an independent student project, made as a proof-of-work submission. It is not an
+        official EdgeChat product and is not otherwise affiliated with or endorsed by EdgeChat or
+        Biostate AI.
+      </p>
+      <p>
+        The books are public domain, from Project Gutenberg. The retrieval system, its evaluation and
+        the code behind this site are my own work.
+      </p>
+    </div>
+  </div>
+  <img class="otter paws" src="assets/otter-paws.png" alt="">
+</footer>
+
+<div class="tip" id="tip" role="tooltip"></div>
+<script src="eval.js"></script>
+</body>
+</html>
