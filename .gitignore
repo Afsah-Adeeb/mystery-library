@@ -1,0 +1,38 @@
+# Secrets -- never commit
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Local scratch
+*.pkl
+
+# Runtime monitoring log -- real usage data, regenerated as the app is used.
+# Not committed: it's per-deployment observability, not source, and it would
+# leak whatever questions users typed into the public demo.
+data/telemetry/
+
+# NOTE: data/books/*.txt and data/vector_store/ are intentionally COMMITTED
+# so the repo is self-contained and a hosted demo can serve answers without
+# a rebuild step. See README "What's committed and why".
+
+# Cached generated answers, so judge.py can grade the exact answers evaluate.py
+# scored without paying to regenerate them. Derived data: regenerate with
+# `python evaluate.py --generate`. Not committed -- it is large, and it goes
+# stale the moment the corpus or the prompt changes.
+eval/.answers_cache.json
+
+# Firebase deploy cache
+.firebase/
+eval/_*_run.log
+
+# Grep-friendly export for the agentic comparison arm; regenerate with
+# `python agentic/export_text.py`.
+data/books_text/
+
+
+# Run logs, and the resumable progress file of eval/crag_vs_rag.py.
+eval/_*.log
+eval/.crag_progress.jsonl

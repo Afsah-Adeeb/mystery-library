@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Mystery Library</title>
+  <meta name="description"
+        content="Ask questions across 23 classic mystery books. A corrective RAG system: every passage is graded before it reaches the model.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+        rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❦</text></svg>">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#" data-view="ask">
+    <span class="brand-mark">❦</span>
+    <span class="brand-text">The Mystery Library</span>
+  </a>
+  <nav class="nav">
+    <button class="nav-link is-active" data-view="ask">Ask</button>
+    <button class="nav-link" data-view="evaluation">Evaluation</button>
+    <button class="nav-link" data-view="corpus">Shelf</button>
+    <button class="nav-link" data-view="activity">Activity</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ================= ASK ================= -->
+  <section class="view is-active" id="view-ask">
+
+    <div class="intro" id="intro">
+      <p class="kicker"><span class="dot"></span><span id="kicker-text">Corrective RAG</span></p>
+      <h1>Ask the great detectives.</h1>
+      <p class="lede">
+        Sherlock Holmes, Father Brown, Dupin and twenty more classic mysteries.
+        Every passage is <em>graded before it reaches the model</em>. The system answers
+        from what survives, searches deeper when too little does, or declines rather
+        than guessing.
+      </p>
+    </div>
+
+    <div class="thread" id="thread"></div>
+
+    <div class="composer-wrap">
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="q" type="text" placeholder="Ask a question about the books…"
+               aria-label="Ask a question about the books">
+        <button type="submit" id="send" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none"
+               stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+               stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+
+      <div class="suggestions" id="suggestions">
+        <!-- Each suggestion was checked against the live corrective flow.
+             "What killed Julia Stoner?" was the first choice and was dropped:
+             the passage that reveals the swamp adder never says "Julia", so
+             retrieval misses it and the flow (correctly) declines -- honest,
+             but a poor first click. -->
+        <button class="chip" data-q="In Silver Blaze, what was the curious incident of the dog in the night-time?">
+          The curious incident of the dog?
+        </button>
+        <button class="chip" data-q="In which story is a stolen document concealed simply by leaving it in plain view?">
+          A letter hidden in plain sight?
+        </button>
+        <button class="chip chip-muted"
+                data-q="Who is finally revealed as the murderer of Edwin Drood?">
+          Who killed Edwin Drood? (Dickens never finished it)
+        </button>
+      </div>
+
+      <!-- There are deliberately no controls here.
+           Retrieval depth and the plain-RAG baseline are still parameters on
+           /api/ask, because the evaluation scripts drive them -- but neither
+           belongs in front of a visitor. Nobody arriving at this page knows
+           what top-k is, and offering to switch off the correction is odd
+           when the correction is the point. The plain-vs-corrective
+           comparison is already answered properly, with confidence intervals,
+           under Evaluation. -->
+    </div>
+  </section>
+
+  <!-- ============== EVALUATION ============== -->
+  <section class="view" id="view-evaluation">
+    <h2 class="view-title">Evaluation</h2>
+    <p class="view-sub">
+      Measured against hand-labelled questions — some the books can answer, some they
+      deliberately cannot. Every figure carries a 95% confidence interval.
+    </p>
+    <div id="evaluation-body" class="loading">Loading…</div>
+  </section>
+
+  <!-- ================ SHELF ================ -->
+  <section class="view" id="view-corpus">
+    <h2 class="view-title">The shelf</h2>
+    <p class="view-sub">
+      Every book in the index, oldest first. All public domain, from
+      Project Gutenberg, split into chapters and embedded locally.
+    </p>
+    <div id="corpus-body" class="loading">Loading…</div>
+  </section>
+
+  <!-- =============== ACTIVITY =============== -->
+  <section class="view" id="view-activity">
+    <h2 class="view-title">Activity</h2>
+    <p class="view-sub">
+      What the system actually did on real questions — as opposed to the Evaluation
+      tab, which scores it offline on questions with known answers.
+    </p>
+    <div id="activity-body" class="loading">Loading…</div>
+  </section>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

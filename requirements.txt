@@ -1,0 +1,22 @@
+sentence-transformers==3.3.1   # local, free embedding model (all-MiniLM-L6-v2)
+faiss-cpu>=1.9.0         # vector database for similarity search
+google-genai==2.19.0     # official Gemini API client
+python-dotenv==1.0.1     # loads API keys from a .env file instead of hardcoding them
+numpy>=1.26.4            # array math, used by faiss + embeddings
+# faiss-cpu/numpy are floor-pinned rather than exact: they ship compiled wheels
+# per-Python-version, so an exact pin risks a version with no wheel for
+# whatever interpreter the host provisions. Everything else is exact-pinned
+# for reproducibility since it's pure Python and doesn't have that failure mode.
+tqdm==4.67.1             # progress bars so you can see chunking/embedding progress
+langgraph==1.2.11        # branching/cyclic workflow graph for the CRAG flow (crag.py)
+# Floor-free exact pin: pure Python, and CRAG's behaviour depends on the graph
+# API staying put. Note this pulls langchain-core as a transitive dependency --
+# that is LangChain's runtime interfaces, not the LangChain chains library, and
+# nothing in this project uses LangChain itself.
+fastapi==0.121.2          # HTTP API + serves the hand-written frontend (src/api.py)
+uvicorn[standard]==0.39.0 # ASGI server. [standard] pulls in the fast event loop
+                          # and the HTTP parser; without it SSE streaming is
+                          # noticeably chattier under load.
+# No PDF library: the corpus is plain-text books from Project Gutenberg, read
+# with the standard library (see src/ingest.py). The research-paper version of
+# this project needed PyMuPDF; this one does not.

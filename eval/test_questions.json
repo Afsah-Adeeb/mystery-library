@@ -1,0 +1,1933 @@
+{
+ "_schema": {
+  "id": "stable identifier, referenced in every report",
+  "question": "the question as a user would ask it",
+  "type": "simple | paraphrase | comparison | multi_book | unanswerable",
+  "answerable": "true if the corpus contains the answer; false means the system SHOULD refuse",
+  "correct_books": "file names in data/books/ that count as a correct retrieval (empty when unanswerable)",
+  "must_mention": "required facts. Each fact is a list of accepted spellings -- the fact counts as present if ANY of them appears (case-insensitive). Old books spell things several ways (ourang-outang / orang-utan) and use curly apostrophes, so one spelling per fact would score the punctuation, not the answer.",
+  "nice_to_mention": "optional facts; tracked but not required. TREC calls these 'okay' nuggets, as opposed to 'vital' ones.",
+  "note": "why this question is in the set, and what failure it is meant to catch",
+  "must_not_appear": "unanswerable questions only: giveaway words that must not occur in ANY book, or the trap has stopped being a trap. Checked by src/eval/verify_questions.py -- re-run it whenever books are added.",
+  "verification": "every must_mention fact was checked by script to appear in the text of a correct book, and every trap was checked not to leak its giveaway words into any book"
+ },
+ "questions": [
+  {
+   "id": "S01",
+   "type": "simple",
+   "answerable": true,
+   "question": "What word was written in blood on the wall at Lauriston Gardens?",
+   "correct_books": [
+    "A Study in Scarlet.txt"
+   ],
+   "must_mention": [
+    [
+     "RACHE"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "revenge"
+    ]
+   ],
+   "note": "Single distinctive token. Baseline sanity check."
+  },
+  {
+   "id": "S02",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who murdered Enoch Drebber in A Study in Scarlet?",
+   "correct_books": [
+    "A Study in Scarlet.txt"
+   ],
+   "must_mention": [
+    [
+     "Jefferson Hope"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Lucy"
+    ]
+   ],
+   "note": "The solution of the first Holmes novel."
+  },
+  {
+   "id": "S03",
+   "type": "simple",
+   "answerable": true,
+   "question": "On which troopship did Watson return to England from Afghanistan?",
+   "correct_books": [
+    "A Study in Scarlet.txt"
+   ],
+   "must_mention": [
+    [
+     "Orontes"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Maiwand"
+    ],
+    [
+     "Portsmouth"
+    ]
+   ],
+   "note": "One word in the first chapter; easy to miss in a 330-chunk book."
+  },
+  {
+   "id": "S04",
+   "type": "simple",
+   "answerable": true,
+   "question": "What treasure is at the centre of The Sign of the Four?",
+   "correct_books": [
+    "The Sign of the Four.txt"
+   ],
+   "must_mention": [
+    [
+     "Agra"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Jonathan Small"
+    ],
+    [
+     "Sholto"
+    ]
+   ],
+   "note": "Named treasure; the novel's spine."
+  },
+  {
+   "id": "S05",
+   "type": "simple",
+   "answerable": true,
+   "question": "What was the name of the dog Holmes borrowed to follow the creosote trail?",
+   "correct_books": [
+    "The Sign of the Four.txt"
+   ],
+   "must_mention": [
+    [
+     "Toby"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "creosote"
+    ]
+   ],
+   "note": "Small named detail inside a long novel."
+  },
+  {
+   "id": "S06",
+   "type": "simple",
+   "answerable": true,
+   "question": "What killed Julia Stoner in The Speckled Band?",
+   "correct_books": [
+    "The Adventures of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "swamp adder",
+     "swamp-adder",
+     "snake"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Roylott"
+    ],
+    [
+     "ventilator"
+    ]
+   ],
+   "note": "The best-known solution in the canon."
+  },
+  {
+   "id": "S07",
+   "type": "simple",
+   "answerable": true,
+   "question": "What was the Red-Headed League really a cover for?",
+   "correct_books": [
+    "The Adventures of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "bank"
+    ],
+    [
+     "tunnel"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "John Clay"
+    ],
+    [
+     "Jabez Wilson"
+    ]
+   ],
+   "note": "Two facts: the target and the method."
+  },
+  {
+   "id": "S08",
+   "type": "simple",
+   "answerable": true,
+   "question": "Where was the blue carbuncle found?",
+   "correct_books": [
+    "The Adventures of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "goose"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "crop"
+    ]
+   ],
+   "note": "Distinctive object, distinctive hiding place."
+  },
+  {
+   "id": "S09",
+   "type": "simple",
+   "answerable": true,
+   "question": "In Silver Blaze, what was the curious incident of the dog in the night-time?",
+   "correct_books": [
+    "The Memoirs of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "nothing"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "stable"
+    ]
+   ],
+   "note": "Famous line; the answer is an absence ('did nothing')."
+  },
+  {
+   "id": "S10",
+   "type": "simple",
+   "answerable": true,
+   "question": "Where did Holmes and Moriarty have their final struggle in The Final Problem?",
+   "correct_books": [
+    "The Memoirs of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Reichenbach"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Meiringen"
+    ],
+    [
+     "Switzerland"
+    ]
+   ],
+   "note": "Single place name."
+  },
+  {
+   "id": "S11",
+   "type": "simple",
+   "answerable": true,
+   "question": "What club does Mycroft Holmes belong to?",
+   "correct_books": [
+    "The Memoirs of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Diogenes"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "brother"
+    ]
+   ],
+   "note": "Introduced in The Greek Interpreter."
+  },
+  {
+   "id": "S12",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who was the villain behind the hound in The Hound of the Baskervilles?",
+   "correct_books": [
+    "The Hound of the Baskervilles.txt"
+   ],
+   "must_mention": [
+    [
+     "Stapleton"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Baskerville"
+    ]
+   ],
+   "note": "Novel-length solution."
+  },
+  {
+   "id": "S13",
+   "type": "simple",
+   "answerable": true,
+   "question": "How was the escaped convict Selden related to Mrs. Barrymore?",
+   "correct_books": [
+    "The Hound of the Baskervilles.txt"
+   ],
+   "must_mention": [
+    [
+     "brother"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Selden"
+    ]
+   ],
+   "note": "A relationship stated once, in the middle of the book."
+  },
+  {
+   "id": "S14",
+   "type": "simple",
+   "answerable": true,
+   "question": "What weapon did Colonel Moran use in The Adventure of the Empty House?",
+   "correct_books": [
+    "The Return of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "air-gun",
+     "air gun",
+     "airgun"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Von Herder"
+    ]
+   ],
+   "note": "Weapon and its maker."
+  },
+  {
+   "id": "S15",
+   "type": "simple",
+   "answerable": true,
+   "question": "What did the stick figures in The Adventure of the Dancing Men turn out to be?",
+   "correct_books": [
+    "The Return of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "cipher",
+     "code"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Abe Slaney"
+    ],
+    [
+     "Elsie"
+    ]
+   ],
+   "note": "The concept, not a name."
+  },
+  {
+   "id": "S16",
+   "type": "simple",
+   "answerable": true,
+   "question": "What was hidden inside one of the busts in The Six Napoleons?",
+   "correct_books": [
+    "The Return of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "pearl"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Borgia"
+    ]
+   ],
+   "note": "Object hidden in an object."
+  },
+  {
+   "id": "S17",
+   "type": "simple",
+   "answerable": true,
+   "question": "What was the name of the secret society in the Vermissa Valley in The Valley of Fear?",
+   "correct_books": [
+    "The Valley of Fear.txt"
+   ],
+   "must_mention": [
+    [
+     "Scowrers"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Freemen"
+    ],
+    [
+     "McGinty"
+    ]
+   ],
+   "note": "Proper noun unique to one book."
+  },
+  {
+   "id": "S18",
+   "type": "simple",
+   "answerable": true,
+   "question": "What poison was used in The Adventure of the Devil's Foot?",
+   "correct_books": [
+    "His Last Bow.txt"
+   ],
+   "must_mention": [
+    [
+     "Radix pedis diaboli",
+     "devil's-foot root",
+     "devil’s-foot root",
+     "devil's foot root",
+     "devil’s foot root"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Sterndale"
+    ],
+    [
+     "Africa"
+    ]
+   ],
+   "note": "Latin name and plain name both accepted."
+  },
+  {
+   "id": "S19",
+   "type": "simple",
+   "answerable": true,
+   "question": "What false name does Holmes use when working against Von Bork in His Last Bow?",
+   "correct_books": [
+    "His Last Bow.txt"
+   ],
+   "must_mention": [
+    [
+     "Altamont"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Von Bork"
+    ]
+   ],
+   "note": "The last Holmes story chronologically."
+  },
+  {
+   "id": "S20",
+   "type": "simple",
+   "answerable": true,
+   "question": "What killed Fitzroy McPherson in The Adventure of the Lion's Mane?",
+   "correct_books": [
+    "The Case-Book of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Cyanea",
+     "jellyfish"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "capillata"
+    ]
+   ],
+   "note": "The culprit is an animal."
+  },
+  {
+   "id": "S21",
+   "type": "simple",
+   "answerable": true,
+   "question": "How did Maria Gibson die in The Problem of Thor Bridge?",
+   "correct_books": [
+    "The Case-Book of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "suicide",
+     "killed herself",
+     "took her own life",
+     "her own hand"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Grace Dunbar",
+     "Miss Dunbar"
+    ],
+    [
+     "revolver"
+    ]
+   ],
+   "note": "Solution reverses the obvious reading."
+  },
+  {
+   "id": "S22",
+   "type": "simple",
+   "answerable": true,
+   "question": "Which master criminal does Valentin pursue in The Blue Cross?",
+   "correct_books": [
+    "The Innocence of Father Brown.txt"
+   ],
+   "must_mention": [
+    [
+     "Flambeau"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Father Brown"
+    ],
+    [
+     "sapphire"
+    ]
+   ],
+   "note": "First Father Brown story."
+  },
+  {
+   "id": "S23",
+   "type": "simple",
+   "answerable": true,
+   "question": "In The Invisible Man, why did nobody notice the murderer?",
+   "correct_books": [
+    "The Innocence of Father Brown.txt"
+   ],
+   "must_mention": [
+    [
+     "postman"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Welkin"
+    ]
+   ],
+   "note": "Solution is a social observation, not a clue."
+  },
+  {
+   "id": "S24",
+   "type": "simple",
+   "answerable": true,
+   "question": "In The Absence of Mr Glass, what was the young man really doing alone in his room?",
+   "correct_books": [
+    "The Wisdom of Father Brown.txt"
+   ],
+   "must_mention": [
+    [
+     "conjur",
+     "juggl"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Todhunter"
+    ]
+   ],
+   "note": "Substring 'conjur' covers conjuring/conjurer/conjuror."
+  },
+  {
+   "id": "S25",
+   "type": "simple",
+   "answerable": true,
+   "question": "Whose family curse was supposedly hidden under the purple wig?",
+   "correct_books": [
+    "The Wisdom of Father Brown.txt"
+   ],
+   "must_mention": [
+    [
+     "Exmoor"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "ear"
+    ]
+   ],
+   "note": "Proper noun inside one story of twelve."
+  },
+  {
+   "id": "S26",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who killed the two women in The Murders in the Rue Morgue?",
+   "correct_books": [
+    "The Works of Edgar Allan Poe, Volume 1.txt"
+   ],
+   "must_mention": [
+    [
+     "Ourang-Outang",
+     "orang-outang",
+     "orangutan",
+     "orang-utan",
+     "ourang"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "sailor"
+    ]
+   ],
+   "note": "First detective story ever written. Several spellings of the animal accepted."
+  },
+  {
+   "id": "S27",
+   "type": "simple",
+   "answerable": true,
+   "question": "What did the coded message in The Gold-Bug lead to?",
+   "correct_books": [
+    "The Works of Edgar Allan Poe, Volume 1.txt"
+   ],
+   "must_mention": [
+    [
+     "treasure"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Kidd"
+    ]
+   ],
+   "note": "Poe's cipher story."
+  },
+  {
+   "id": "S28",
+   "type": "simple",
+   "answerable": true,
+   "question": "Where was the stolen letter hidden in The Purloined Letter?",
+   "correct_books": [
+    "The Works of Edgar Allan Poe, Volume 2.txt"
+   ],
+   "must_mention": [
+    [
+     "card-rack",
+     "card rack",
+     "rack"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Minister"
+    ]
+   ],
+   "note": "Hidden in plain sight."
+  },
+  {
+   "id": "S29",
+   "type": "simple",
+   "answerable": true,
+   "question": "Where did the narrator of The Tell-Tale Heart hide the body?",
+   "correct_books": [
+    "The Works of Edgar Allan Poe, Volume 2.txt"
+   ],
+   "must_mention": [
+    [
+     "floor",
+     "plank"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "dismembered",
+     "cut off"
+    ]
+   ],
+   "note": "Short story; one passage holds the answer."
+  },
+  {
+   "id": "S30",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who took the Moonstone from Rachel Verinder's cabinet on the night of her birthday?",
+   "correct_books": [
+    "The Moonstone.txt"
+   ],
+   "must_mention": [
+    [
+     "Franklin Blake"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "opium",
+     "laudanum"
+    ],
+    [
+     "Ablewhite"
+    ]
+   ],
+   "note": "Solution of a 1,500-chunk novel."
+  },
+  {
+   "id": "S31",
+   "type": "simple",
+   "answerable": true,
+   "question": "Which book does Gabriel Betteredge keep re-reading for guidance?",
+   "correct_books": [
+    "The Moonstone.txt"
+   ],
+   "must_mention": [
+    [
+     "Robinson Crusoe"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Betteredge"
+    ]
+   ],
+   "note": "Running joke, mentioned many times."
+  },
+  {
+   "id": "S32",
+   "type": "simple",
+   "answerable": true,
+   "question": "What is John Jasper's relationship to Edwin Drood?",
+   "correct_books": [
+    "The Mystery of Edwin Drood.txt"
+   ],
+   "must_mention": [
+    [
+     "uncle"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "opium"
+    ],
+    [
+     "choir"
+    ]
+   ],
+   "note": "Relationship stated early."
+  },
+  {
+   "id": "S33",
+   "type": "simple",
+   "answerable": true,
+   "question": "In which cathedral town is The Mystery of Edwin Drood set?",
+   "correct_books": [
+    "The Mystery of Edwin Drood.txt"
+   ],
+   "must_mention": [
+    [
+     "Cloisterham"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Fictional place name unique to the book."
+  },
+  {
+   "id": "S34",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who is the police detective in The Leavenworth Case?",
+   "correct_books": [
+    "The Leavenworth Case.txt"
+   ],
+   "must_mention": [
+    [
+     "Gryce"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Raymond"
+    ]
+   ],
+   "note": "Least famous book in the set; the model may not know it."
+  },
+  {
+   "id": "S35",
+   "type": "simple",
+   "answerable": true,
+   "question": "How was Horatio Leavenworth killed?",
+   "correct_books": [
+    "The Leavenworth Case.txt"
+   ],
+   "must_mention": [
+    [
+     "shot",
+     "pistol",
+     "bullet"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "library"
+    ]
+   ],
+   "note": "Method of the central murder."
+  },
+  {
+   "id": "S36",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who was found dead in the locked room in The Big Bow Mystery?",
+   "correct_books": [
+    "The Big Bow Mystery.txt"
+   ],
+   "must_mention": [
+    [
+     "Arthur Constant",
+     "Constant"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Drabdump"
+    ]
+   ],
+   "note": "Victim's name."
+  },
+  {
+   "id": "S37",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who turns out to be the murderer in The Big Bow Mystery?",
+   "correct_books": [
+    "The Big Bow Mystery.txt"
+   ],
+   "must_mention": [
+    [
+     "Grodman"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Solution of a lesser-known novel."
+  },
+  {
+   "id": "S38",
+   "type": "simple",
+   "answerable": true,
+   "question": "What sport is A. J. Raffles famous for?",
+   "correct_books": [
+    "The Amateur Cracksman.txt"
+   ],
+   "must_mention": [
+    [
+     "cricket"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Bunny"
+    ]
+   ],
+   "note": "Character trait stated repeatedly."
+  },
+  {
+   "id": "S39",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who narrates the Raffles stories?",
+   "correct_books": [
+    "The Amateur Cracksman.txt"
+   ],
+   "must_mention": [
+    [
+     "Bunny",
+     "Manders"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Narrator's nickname."
+  },
+  {
+   "id": "S40",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who is the young reporter who solves The Mystery of the Yellow Room?",
+   "correct_books": [
+    "The Mystery of the Yellow Room.txt"
+   ],
+   "must_mention": [
+    [
+     "Rouletabille"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Epoque"
+    ]
+   ],
+   "note": "Detective's name."
+  },
+  {
+   "id": "S41",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who was attacked inside the Yellow Room?",
+   "correct_books": [
+    "The Mystery of the Yellow Room.txt"
+   ],
+   "must_mention": [
+    [
+     "Stangerson"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Mathilde"
+    ]
+   ],
+   "note": "Victim's name."
+  },
+  {
+   "id": "S42",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who was the attacker in The Mystery of the Yellow Room?",
+   "correct_books": [
+    "The Mystery of the Yellow Room.txt"
+   ],
+   "must_mention": [
+    [
+     "Larsan"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Ballmeyer"
+    ]
+   ],
+   "note": "The detective is the criminal; easy to get backwards."
+  },
+  {
+   "id": "S43",
+   "type": "simple",
+   "answerable": true,
+   "question": "Which police inspector arrests Arsene Lupin when the steamship reaches port?",
+   "correct_books": [
+    "The Extraordinary Adventures of Arsene Lupin.txt"
+   ],
+   "must_mention": [
+    [
+     "Ganimard"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Provence"
+    ]
+   ],
+   "note": "Opening story of the Lupin book."
+  },
+  {
+   "id": "S44",
+   "type": "simple",
+   "answerable": true,
+   "question": "What is the full name of the scientist known as the Thinking Machine?",
+   "correct_books": [
+    "The Thinking Machine.txt"
+   ],
+   "must_mention": [
+    [
+     "Van Dusen"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Augustus"
+    ]
+   ],
+   "note": "Name plus string of initials."
+  },
+  {
+   "id": "S45",
+   "type": "simple",
+   "answerable": true,
+   "question": "How long did the Thinking Machine bet he would need to escape from Cell 13?",
+   "correct_books": [
+    "The Thinking Machine.txt"
+   ],
+   "must_mention": [
+    [
+     "week"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Chisholm"
+    ]
+   ],
+   "note": "A duration, stated in the wager."
+  },
+  {
+   "id": "S46",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who is the young journalist who listens to the Old Man in the Corner?",
+   "correct_books": [
+    "The Old Man in the Corner.txt"
+   ],
+   "must_mention": [
+    [
+     "Polly Burton",
+     "Polly"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Evening Observer"
+    ]
+   ],
+   "note": "Listener's name."
+  },
+  {
+   "id": "S47",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who narrates The Thirty-Nine Steps?",
+   "correct_books": [
+    "The Thirty-Nine Steps.txt"
+   ],
+   "must_mention": [
+    [
+     "Hannay"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Rhodesia"
+    ]
+   ],
+   "note": "Narrator."
+  },
+  {
+   "id": "S48",
+   "type": "simple",
+   "answerable": true,
+   "question": "Who was murdered in Richard Hannay's flat at the start of The Thirty-Nine Steps?",
+   "correct_books": [
+    "The Thirty-Nine Steps.txt"
+   ],
+   "must_mention": [
+    [
+     "Scudder"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Franklin P. Scudder",
+     "Franklin Scudder"
+    ]
+   ],
+   "note": "Victim."
+  },
+  {
+   "id": "P01",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "In which story does a stepfather kill using a venomous creature sent through a small opening into the next bedroom?",
+   "correct_books": [
+    "The Adventures of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Speckled Band"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Roylott"
+    ]
+   ],
+   "note": "Avoids 'snake', 'adder', 'ventilator', 'Roylott'. Keyword search has little to match."
+  },
+  {
+   "id": "P02",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "Which case turns on a guard animal that stayed silent overnight, showing the culprit was someone it knew?",
+   "correct_books": [
+    "The Memoirs of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Silver Blaze"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Straker"
+    ]
+   ],
+   "note": "Avoids 'dog', 'night-time', 'curious incident'."
+  },
+  {
+   "id": "P03",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "Which armchair sleuth fiddles with a cord while explaining cases to a female reporter over lunch?",
+   "correct_books": [
+    "The Old Man in the Corner.txt"
+   ],
+   "must_mention": [
+    [
+     "old man",
+     "Old Man"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Polly"
+    ]
+   ],
+   "note": "Avoids 'string', 'knots', 'tea-shop', 'corner'."
+  },
+  {
+   "id": "P04",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "In which story is a stolen document concealed simply by leaving it in plain view?",
+   "correct_books": [
+    "The Works of Edgar Allan Poe, Volume 2.txt"
+   ],
+   "must_mention": [
+    [
+     "Purloined Letter"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Dupin"
+    ]
+   ],
+   "note": "Avoids 'letter', 'purloined', 'card-rack'."
+  },
+  {
+   "id": "P05",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "Which story has a large ape kill two women in Paris?",
+   "correct_books": [
+    "The Works of Edgar Allan Poe, Volume 1.txt"
+   ],
+   "must_mention": [
+    [
+     "Rue Morgue"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Dupin"
+    ]
+   ],
+   "note": "Avoids 'ourang-outang', 'murders', 'L'Espanaye'."
+  },
+  {
+   "id": "P06",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "In which case does the killer turn out to be a sea creature rather than a person?",
+   "correct_books": [
+    "The Case-Book of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Lion's Mane",
+     "Lion’s Mane",
+     "Lions Mane"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Cyanea",
+     "jellyfish"
+    ]
+   ],
+   "note": "Avoids 'jellyfish', 'Cyanea', 'lion'."
+  },
+  {
+   "id": "P07",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "In which Father Brown story does the killer go unseen because of his everyday uniform?",
+   "correct_books": [
+    "The Innocence of Father Brown.txt"
+   ],
+   "must_mention": [
+    [
+     "Invisible Man"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "postman"
+    ]
+   ],
+   "note": "Avoids 'postman', 'invisible'."
+  },
+  {
+   "id": "P08",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "Which story features a scientist who bets he can break out of a prison using nothing but reasoning?",
+   "correct_books": [
+    "The Thinking Machine.txt"
+   ],
+   "must_mention": [
+    [
+     "Cell 13"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Van Dusen"
+    ]
+   ],
+   "note": "Avoids 'cell', 'escape', 'Thinking Machine'."
+  },
+  {
+   "id": "P09",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "What did the villain smear on his huge dog to make it glow like a supernatural beast?",
+   "correct_books": [
+    "The Hound of the Baskervilles.txt"
+   ],
+   "must_mention": [
+    [
+     "phosphorus"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Stapleton"
+    ]
+   ],
+   "note": "Avoids 'phosphorus', 'hound'."
+  },
+  {
+   "id": "P10",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "What sleep-inducing drug was secretly given to the man who unknowingly removed the yellow gem?",
+   "correct_books": [
+    "The Moonstone.txt"
+   ],
+   "must_mention": [
+    [
+     "laudanum",
+     "opium"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Candy"
+    ]
+   ],
+   "note": "Avoids 'laudanum', 'opium', 'Moonstone', 'diamond'."
+  },
+  {
+   "id": "P11",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "Which gentleman thief is also a celebrated sportsman with a bat and ball?",
+   "correct_books": [
+    "The Amateur Cracksman.txt"
+   ],
+   "must_mention": [
+    [
+     "Raffles"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "cricket"
+    ]
+   ],
+   "note": "Avoids 'cricket', 'cracksman', 'burglar'."
+  },
+  {
+   "id": "P12",
+   "type": "paraphrase",
+   "answerable": true,
+   "question": "Who is the man back from southern Africa who gets bored in London and is soon framed for murder?",
+   "correct_books": [
+    "The Thirty-Nine Steps.txt"
+   ],
+   "must_mention": [
+    [
+     "Hannay"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Scudder"
+    ]
+   ],
+   "note": "Avoids 'Rhodesia', 'Hannay', 'flat'."
+  },
+  {
+   "id": "C01",
+   "type": "comparison",
+   "answerable": true,
+   "question": "How does Sherlock Holmes rate Poe's detective Dupin, and how does Dupin solve the Rue Morgue case?",
+   "correct_books": [
+    "A Study in Scarlet.txt",
+    "The Works of Edgar Allan Poe, Volume 1.txt"
+   ],
+   "must_mention": [
+    [
+     "inferior"
+    ],
+    [
+     "Ourang-Outang",
+     "orang-outang",
+     "orangutan",
+     "orang-utan",
+     "ourang",
+     "ape"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Lecoq"
+    ]
+   ],
+   "note": "Holmes dismisses Dupin in A Study in Scarlet; needs both books."
+  },
+  {
+   "id": "C02",
+   "type": "comparison",
+   "answerable": true,
+   "question": "How does Flambeau's role change between The Blue Cross and the later Father Brown stories?",
+   "correct_books": [
+    "The Innocence of Father Brown.txt",
+    "The Wisdom of Father Brown.txt"
+   ],
+   "must_mention": [
+    [
+     "thief",
+     "criminal"
+    ],
+    [
+     "detective",
+     "friend"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Same character across two collections."
+  },
+  {
+   "id": "C03",
+   "type": "comparison",
+   "answerable": true,
+   "question": "The Big Bow Mystery and The Mystery of the Yellow Room are both locked-room mysteries. Who was the culprit in each?",
+   "correct_books": [
+    "The Big Bow Mystery.txt",
+    "The Mystery of the Yellow Room.txt"
+   ],
+   "must_mention": [
+    [
+     "Grodman"
+    ],
+    [
+     "Larsan"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Two solutions from two books in one answer."
+  },
+  {
+   "id": "C04",
+   "type": "comparison",
+   "answerable": true,
+   "question": "Which police detectives pursue Raffles and Arsene Lupin?",
+   "correct_books": [
+    "The Amateur Cracksman.txt",
+    "The Extraordinary Adventures of Arsene Lupin.txt"
+   ],
+   "must_mention": [
+    [
+     "Mackenzie"
+    ],
+    [
+     "Ganimard"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "One name per book."
+  },
+  {
+   "id": "C05",
+   "type": "comparison",
+   "answerable": true,
+   "question": "Compare the motive for murder in A Study in Scarlet with the motive in The Valley of Fear.",
+   "correct_books": [
+    "A Study in Scarlet.txt",
+    "The Valley of Fear.txt"
+   ],
+   "must_mention": [
+    [
+     "revenge",
+     "vengeance",
+     "avenge"
+    ],
+    [
+     "Ferrier",
+     "Lucy"
+    ],
+    [
+     "Scowrers",
+     "Birdy Edwards",
+     "Edwards",
+     "Pinkerton"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Mormon"
+    ]
+   ],
+   "note": "Both motives are revenge for something that happened in America."
+  },
+  {
+   "id": "C06",
+   "type": "comparison",
+   "answerable": true,
+   "question": "Who tells the story of The Moonstone, compared with who narrates The Leavenworth Case?",
+   "correct_books": [
+    "The Moonstone.txt",
+    "The Leavenworth Case.txt"
+   ],
+   "must_mention": [
+    [
+     "Betteredge",
+     "Clack",
+     "Bruff",
+     "Franklin Blake"
+    ],
+    [
+     "Raymond"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Many narrators vs one."
+  },
+  {
+   "id": "C07",
+   "type": "comparison",
+   "answerable": true,
+   "question": "In The Final Problem Watson believes Holmes died at the Reichenbach Falls. How does Holmes explain his survival in The Empty House?",
+   "correct_books": [
+    "The Return of Sherlock Holmes.txt",
+    "The Memoirs of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "baritsu"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Moriarty"
+    ],
+    [
+     "climb"
+    ]
+   ],
+   "note": "The answer is only in the second book."
+  },
+  {
+   "id": "C08",
+   "type": "comparison",
+   "answerable": true,
+   "question": "Both The Mystery of Edwin Drood and The Moonstone involve opium. Who uses it in each?",
+   "correct_books": [
+    "The Mystery of Edwin Drood.txt",
+    "The Moonstone.txt"
+   ],
+   "must_mention": [
+    [
+     "Jasper"
+    ],
+    [
+     "Franklin Blake",
+     "Ezra Jennings",
+     "Candy"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Opium in two different novels."
+  },
+  {
+   "id": "C09",
+   "type": "comparison",
+   "answerable": true,
+   "question": "How do the Thinking Machine and the Old Man in the Corner differ in how they investigate?",
+   "correct_books": [
+    "The Thinking Machine.txt",
+    "The Old Man in the Corner.txt"
+   ],
+   "must_mention": [
+    [
+     "Van Dusen",
+     "Thinking Machine"
+    ],
+    [
+     "old man",
+     "Old Man"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "tea"
+    ]
+   ],
+   "note": "Contrast in method across two collections."
+  },
+  {
+   "id": "M01",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which books in this collection feature Professor Moriarty?",
+   "correct_books": [
+    "The Memoirs of Sherlock Holmes.txt",
+    "The Return of Sherlock Holmes.txt",
+    "The Valley of Fear.txt"
+   ],
+   "must_mention": [
+    [
+     "Final Problem",
+     "Memoirs"
+    ],
+    [
+     "Valley of Fear"
+    ],
+    [
+     "Empty House",
+     "Return"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Needs three different books in the top-k."
+  },
+  {
+   "id": "M02",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which stories in this library involve a stolen jewel or gem?",
+   "correct_books": [
+    "The Adventures of Sherlock Holmes.txt",
+    "The Moonstone.txt",
+    "The Case-Book of Sherlock Holmes.txt",
+    "The Extraordinary Adventures of Arsene Lupin.txt",
+    "The Innocence of Father Brown.txt",
+    "The Return of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "carbuncle",
+     "Beryl Coronet"
+    ],
+    [
+     "Moonstone"
+    ],
+    [
+     "Mazarin",
+     "Queen's Necklace",
+     "Queen’s Necklace",
+     "Six Napoleons",
+     "Blue Cross",
+     "sapphire",
+     "pearl"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Broad; many valid books."
+  },
+  {
+   "id": "M03",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which stories in this collection are locked-room mysteries?",
+   "correct_books": [
+    "The Works of Edgar Allan Poe, Volume 1.txt",
+    "The Big Bow Mystery.txt",
+    "The Mystery of the Yellow Room.txt",
+    "The Adventures of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Rue Morgue"
+    ],
+    [
+     "Big Bow"
+    ],
+    [
+     "Yellow Room"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Speckled Band"
+    ]
+   ],
+   "note": "The genre's classic puzzle across four books."
+  },
+  {
+   "id": "M04",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which books in this collection have part of their story set in America?",
+   "correct_books": [
+    "A Study in Scarlet.txt",
+    "The Valley of Fear.txt",
+    "The Leavenworth Case.txt",
+    "The Thinking Machine.txt"
+   ],
+   "must_mention": [
+    [
+     "Utah",
+     "Salt Lake"
+    ],
+    [
+     "Vermissa"
+    ],
+    [
+     "New York",
+     "Boston"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Two Holmes novels plus two American books."
+  },
+  {
+   "id": "M05",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which stories involve a secret society or criminal brotherhood?",
+   "correct_books": [
+    "The Valley of Fear.txt",
+    "The Adventures of Sherlock Holmes.txt",
+    "His Last Bow.txt",
+    "A Study in Scarlet.txt"
+   ],
+   "must_mention": [
+    [
+     "Scowrers"
+    ],
+    [
+     "Ku Klux Klan",
+     "K. K. K.",
+     "K.K.K."
+    ],
+    [
+     "Red Circle"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Three different books, three different societies."
+  },
+  {
+   "id": "M06",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which books in this collection have plots connected to India?",
+   "correct_books": [
+    "The Sign of the Four.txt",
+    "The Moonstone.txt",
+    "The Adventures of Sherlock Holmes.txt",
+    "The Memoirs of Sherlock Holmes.txt"
+   ],
+   "must_mention": [
+    [
+     "Agra"
+    ],
+    [
+     "Seringapatam",
+     "Brahmin"
+    ]
+   ],
+   "nice_to_mention": [
+    [
+     "Calcutta"
+    ],
+    [
+     "Mutiny"
+    ]
+   ],
+   "note": "Colonial background shared across books."
+  },
+  {
+   "id": "M07",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which gentleman thieves appear in this collection?",
+   "correct_books": [
+    "The Amateur Cracksman.txt",
+    "The Extraordinary Adventures of Arsene Lupin.txt",
+    "The Innocence of Father Brown.txt"
+   ],
+   "must_mention": [
+    [
+     "Raffles"
+    ],
+    [
+     "Lupin"
+    ],
+    [
+     "Flambeau"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "One thief per book."
+  },
+  {
+   "id": "M08",
+   "type": "multi_book",
+   "answerable": true,
+   "question": "Which detectives in this collection are not police or private detectives -- for example a priest, a scientist or a journalist?",
+   "correct_books": [
+    "The Innocence of Father Brown.txt",
+    "The Wisdom of Father Brown.txt",
+    "The Thinking Machine.txt",
+    "The Mystery of the Yellow Room.txt"
+   ],
+   "must_mention": [
+    [
+     "Father Brown"
+    ],
+    [
+     "Van Dusen",
+     "Thinking Machine"
+    ],
+    [
+     "Rouletabille"
+    ]
+   ],
+   "nice_to_mention": [],
+   "note": "Needs three different series."
+  },
+  {
+   "id": "U01",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What was Sherlock Holmes's blood type?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: on-topic character, attribute never given.",
+   "must_not_appear": [
+    "blood type",
+    "blood group"
+   ]
+  },
+  {
+   "id": "U02",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What was the name of Watson's bull pup?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: Watson says he keeps a bull pup in A Study in Scarlet, but it is never named. Retrieval will find the passage confidently.",
+   "must_not_appear": []
+  },
+  {
+   "id": "U03",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "Who is finally revealed as the murderer of Edwin Drood?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: Dickens died before finishing the book. The model knows a century of theories; the text has no solution.",
+   "must_not_appear": []
+  },
+  {
+   "id": "U04",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What was the name of Professor Moriarty's mother?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: on-topic character, family never described.",
+   "must_not_appear": [
+    "Moriarty's mother",
+    "Moriarty’s mother"
+   ]
+  },
+  {
+   "id": "U05",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "In what year was Father Brown born?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: no birth date in either collection.",
+   "must_not_appear": [
+    "Father Brown was born"
+   ]
+  },
+  {
+   "id": "U06",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "How did Raffles die?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: Raffles dies in the Boer War in a LATER book that is not in this corpus.",
+   "must_not_appear": [
+    "Raffles died",
+    "death of Raffles",
+    "Raffles was killed"
+   ]
+  },
+  {
+   "id": "U07",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What is the name of Arsene Lupin's son?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: not in this book.",
+   "must_not_appear": [
+    "Lupin's son",
+    "Lupin’s son"
+   ]
+  },
+  {
+   "id": "U08",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What is the population of Cloisterham?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: the town is described at length but never counted.",
+   "must_not_appear": [
+    "population of Cloisterham"
+   ]
+  },
+  {
+   "id": "U09",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "How much was Holmes paid for solving The Hound of the Baskervilles?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: fee never mentioned.",
+   "must_not_appear": [
+    "Holmes's fee",
+    "Holmes’s fee"
+   ]
+  },
+  {
+   "id": "U10",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What did Father Brown study at university?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: education never described.",
+   "must_not_appear": [
+    "Father Brown studied"
+   ]
+  },
+  {
+   "id": "U11",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What is the name of Sherlock Holmes's barber?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: no barber.",
+   "must_not_appear": [
+    "Holmes's barber",
+    "Holmes’s barber"
+   ]
+  },
+  {
+   "id": "U12",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What was the Thinking Machine's favourite food?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: on-topic character, preference never given.",
+   "must_not_appear": [
+    "favourite food",
+    "favorite food"
+   ]
+  },
+  {
+   "id": "U13",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What salary did Inspector Gryce earn?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: never stated.",
+   "must_not_appear": [
+    "Gryce's salary",
+    "Gryce’s salary"
+   ]
+  },
+  {
+   "id": "U14",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "What is Richard Hannay's middle name?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: never given.",
+   "must_not_appear": [
+    "middle name"
+   ]
+  },
+  {
+   "id": "U15",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "In what year did Joseph Rouletabille die?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "TRAP: he is a young man in this book; no death.",
+   "must_not_appear": [
+    "Rouletabille died"
+   ]
+  },
+  {
+   "id": "U16",
+   "type": "unanswerable",
+   "answerable": false,
+   "question": "Which actor played Sherlock Holmes in the most films?",
+   "correct_books": [],
+   "must_mention": [],
+   "nice_to_mention": [],
+   "note": "Out of corpus entirely, but phrased around the corpus's main character.",
+   "must_not_appear": [
+    "played Sherlock Holmes"
+   ]
+  }
+ ]
+}

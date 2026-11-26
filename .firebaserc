@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "compressor-demo-8310"
+  },
+  "targets": {
+    "compressor-demo-8310": {
+      "hosting": {
+        "app": ["mystery-library"]
+      }
+    }
+  }
+}

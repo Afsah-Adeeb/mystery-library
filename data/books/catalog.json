@@ -1,0 +1,186 @@
+[
+  {
+    "file": "A Study in Scarlet.txt",
+    "title": "A Study in Scarlet",
+    "author": "Arthur Conan Doyle",
+    "year": 1887,
+    "gutenberg_id": 244,
+    "url": "https://www.gutenberg.org/ebooks/244"
+  },
+  {
+    "file": "The Sign of the Four.txt",
+    "title": "The Sign of the Four",
+    "author": "Arthur Conan Doyle",
+    "year": 1890,
+    "gutenberg_id": 2097,
+    "url": "https://www.gutenberg.org/ebooks/2097"
+  },
+  {
+    "file": "The Adventures of Sherlock Holmes.txt",
+    "title": "The Adventures of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "year": 1892,
+    "gutenberg_id": 1661,
+    "url": "https://www.gutenberg.org/ebooks/1661"
+  },
+  {
+    "file": "The Memoirs of Sherlock Holmes.txt",
+    "title": "The Memoirs of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "year": 1894,
+    "gutenberg_id": 834,
+    "url": "https://www.gutenberg.org/ebooks/834"
+  },
+  {
+    "file": "The Hound of the Baskervilles.txt",
+    "title": "The Hound of the Baskervilles",
+    "author": "Arthur Conan Doyle",
+    "year": 1902,
+    "gutenberg_id": 2852,
+    "url": "https://www.gutenberg.org/ebooks/2852"
+  },
+  {
+    "file": "The Return of Sherlock Holmes.txt",
+    "title": "The Return of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "year": 1905,
+    "gutenberg_id": 108,
+    "url": "https://www.gutenberg.org/ebooks/108"
+  },
+  {
+    "file": "The Valley of Fear.txt",
+    "title": "The Valley of Fear",
+    "author": "Arthur Conan Doyle",
+    "year": 1915,
+    "gutenberg_id": 3289,
+    "url": "https://www.gutenberg.org/ebooks/3289"
+  },
+  {
+    "file": "His Last Bow.txt",
+    "title": "His Last Bow",
+    "author": "Arthur Conan Doyle",
+    "year": 1917,
+    "gutenberg_id": 2350,
+    "url": "https://www.gutenberg.org/ebooks/2350"
+  },
+  {
+    "file": "The Case-Book of Sherlock Holmes.txt",
+    "title": "The Case-Book of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "year": 1927,
+    "gutenberg_id": 69700,
+    "url": "https://www.gutenberg.org/ebooks/69700"
+  },
+  {
+    "file": "The Innocence of Father Brown.txt",
+    "title": "The Innocence of Father Brown",
+    "author": "G. K. Chesterton",
+    "year": 1911,
+    "gutenberg_id": 204,
+    "url": "https://www.gutenberg.org/ebooks/204"
+  },
+  {
+    "file": "The Wisdom of Father Brown.txt",
+    "title": "The Wisdom of Father Brown",
+    "author": "G. K. Chesterton",
+    "year": 1914,
+    "gutenberg_id": 223,
+    "url": "https://www.gutenberg.org/ebooks/223"
+  },
+  {
+    "file": "The Works of Edgar Allan Poe, Volume 1.txt",
+    "title": "The Works of Edgar Allan Poe, Volume 1",
+    "author": "Edgar Allan Poe",
+    "year": 1845,
+    "gutenberg_id": 2147,
+    "url": "https://www.gutenberg.org/ebooks/2147"
+  },
+  {
+    "file": "The Works of Edgar Allan Poe, Volume 2.txt",
+    "title": "The Works of Edgar Allan Poe, Volume 2",
+    "author": "Edgar Allan Poe",
+    "year": 1845,
+    "gutenberg_id": 2148,
+    "url": "https://www.gutenberg.org/ebooks/2148"
+  },
+  {
+    "file": "The Moonstone.txt",
+    "title": "The Moonstone",
+    "author": "Wilkie Collins",
+    "year": 1868,
+    "gutenberg_id": 155,
+    "url": "https://www.gutenberg.org/ebooks/155"
+  },
+  {
+    "file": "The Mystery of Edwin Drood.txt",
+    "title": "The Mystery of Edwin Drood",
+    "author": "Charles Dickens",
+    "year": 1870,
+    "gutenberg_id": 564,
+    "url": "https://www.gutenberg.org/ebooks/564"
+  },
+  {
+    "file": "The Leavenworth Case.txt",
+    "title": "The Leavenworth Case",
+    "author": "Anna Katharine Green",
+    "year": 1878,
+    "gutenberg_id": 4047,
+    "url": "https://www.gutenberg.org/ebooks/4047"
+  },
+  {
+    "file": "The Big Bow Mystery.txt",
+    "title": "The Big Bow Mystery",
+    "author": "Israel Zangwill",
+    "year": 1892,
+    "gutenberg_id": 28164,
+    "url": "https://www.gutenberg.org/ebooks/28164"
+  },
+  {
+    "file": "The Amateur Cracksman.txt",
+    "title": "The Amateur Cracksman",
+    "author": "E. W. Hornung",
+    "year": 1899,
+    "gutenberg_id": 706,
+    "url": "https://www.gutenberg.org/ebooks/706"
+  },
+  {
+    "file": "The Mystery of the Yellow Room.txt",
+    "title": "The Mystery of the Yellow Room",
+    "author": "Gaston Leroux",
+    "year": 1907,
+    "gutenberg_id": 1685,
+    "url": "https://www.gutenberg.org/ebooks/1685"
+  },
+  {
+    "file": "The Extraordinary Adventures of Arsene Lupin.txt",
+    "title": "The Extraordinary Adventures of Arsene Lupin",
+    "author": "Maurice Leblanc",
+    "year": 1907,
+    "gutenberg_id": 6133,
+    "url": "https://www.gutenberg.org/ebooks/6133"
+  },
+  {
+    "file": "The Thinking Machine.txt",
+    "title": "The Thinking Machine",
+    "author": "Jacques Futrelle",
+    "year": 1907,
+    "gutenberg_id": 57669,
+    "url": "https://www.gutenberg.org/ebooks/57669"
+  },
+  {
+    "file": "The Old Man in the Corner.txt",
+    "title": "The Old Man in the Corner",
+    "author": "Baroness Orczy",
+    "year": 1909,
+    "gutenberg_id": 10556,
+    "url": "https://www.gutenberg.org/ebooks/10556"
+  },
+  {
+    "file": "The Thirty-Nine Steps.txt",
+    "title": "The Thirty-Nine Steps",
+    "author": "John Buchan",
+    "year": 1915,
+    "gutenberg_id": 558,
+    "url": "https://www.gutenberg.org/ebooks/558"
+  }
+]
